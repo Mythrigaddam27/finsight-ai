@@ -1,17 +1,17 @@
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import StatCard from "@/components/dashboard/StatCard";
 import ExpenseCard from "@/components/expenses/ExpenseCard";
+import AddExpenseForm from "@/components/expenses/AddExpenseForm";
 import { mockExpenses } from "@/constants/mockExpenses";
 
 export default function Home() {
   return (
     <DashboardLayout>
       <div>
-        <h1 className="mb-6 text-3xl font-bold">
+        <h1 className="mb-6 text-3xl font-bold text-slate-900">
           Dashboard
         </h1>
 
-        {/* Statistics */}
         <div className="mb-8 grid gap-6 md:grid-cols-3">
           <StatCard
             title="Total Expenses"
@@ -29,9 +29,10 @@ export default function Home() {
           />
         </div>
 
-        {/* Recent Expenses */}
+        <AddExpenseForm />
+
         <div>
-          <h2 className="mb-4 text-2xl font-semibold">
+          <h2 className="mb-4 text-2xl font-semibold text-slate-900">
             Recent Expenses
           </h2>
 
