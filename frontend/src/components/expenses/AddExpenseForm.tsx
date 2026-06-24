@@ -2,17 +2,30 @@
 
 import { useState } from "react";
 
-export default function AddExpenseForm() {
+interface AddExpenseFormProps {
+  onAddExpense: (
+    title: string,
+    amount: number
+  ) => void;
+}
+
+export default function AddExpenseForm({
+  onAddExpense,
+}: AddExpenseFormProps) {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (
+    e: React.FormEvent
+  ) => {
     e.preventDefault();
 
-    console.log({
+    if (!title || !amount) return;
+
+    onAddExpense(
       title,
-      amount,
-    });
+      Number(amount)
+    );
 
     setTitle("");
     setAmount("");
@@ -21,9 +34,9 @@ export default function AddExpenseForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mb-8 rounded-xl bg-white p-6 shadow"
+      className="rounded-xl bg-white p-6 shadow"
     >
-      <h2 className="mb-4 text-xl font-semibold">
+      <h2 className="mb-4 text-2xl font-bold">
         Add Expense
       </h2>
 
@@ -32,7 +45,9 @@ export default function AddExpenseForm() {
           type="text"
           placeholder="Expense Title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) =>
+            setTitle(e.target.value)
+          }
           className="rounded-lg border p-3"
         />
 
@@ -40,14 +55,16 @@ export default function AddExpenseForm() {
           type="number"
           placeholder="Amount"
           value={amount}
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={(e) =>
+            setAmount(e.target.value)
+          }
           className="rounded-lg border p-3"
         />
       </div>
 
       <button
         type="submit"
-        className="mt-4 rounded-lg bg-blue-600 px-4 py-2 text-white"
+        className="mt-4 rounded-lg bg-blue-600 px-5 py-2 text-white"
       >
         Add Expense
       </button>
