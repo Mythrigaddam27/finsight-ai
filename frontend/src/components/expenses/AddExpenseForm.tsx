@@ -5,7 +5,8 @@ import { useState } from "react";
 interface AddExpenseFormProps {
   onAddExpense: (
     title: string,
-    amount: number
+    amount: number,
+    category: string
   ) => void;
 }
 
@@ -14,6 +15,7 @@ export default function AddExpenseForm({
 }: AddExpenseFormProps) {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("Food");
 
   const handleSubmit = (
     e: React.FormEvent
@@ -24,11 +26,13 @@ export default function AddExpenseForm({
 
     onAddExpense(
       title,
-      Number(amount)
+      Number(amount),
+      category
     );
 
     setTitle("");
     setAmount("");
+    setCategory("Food");
   };
 
   return (
@@ -60,6 +64,23 @@ export default function AddExpenseForm({
           }
           className="rounded-lg border p-3"
         />
+
+        <select
+          value={category}
+          onChange={(e) =>
+            setCategory(e.target.value)
+          }
+          className="rounded-lg border p-3"
+        >
+          <option value="Food">Food</option>
+          <option value="Travel">Travel</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Bills">Bills</option>
+          <option value="Entertainment">
+            Entertainment
+          </option>
+          <option value="Other">Other</option>
+        </select>
       </div>
 
       <button
