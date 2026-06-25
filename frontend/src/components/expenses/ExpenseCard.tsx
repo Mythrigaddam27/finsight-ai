@@ -2,11 +2,13 @@ import { Expense } from "@/types/Expense";
 
 interface ExpenseCardProps {
   expense: Expense;
+  onDelete: (id: string) => void;
 }
 
 export default function ExpenseCard({
   expense,
-}: ExpenseCardProps) {
+  onDelete,
+}: ExpenseCardProps){
   return (
     <div className="rounded-xl bg-white p-4 shadow hover:shadow-lg transition">
       <div className="flex items-center justify-between">
@@ -26,6 +28,12 @@ export default function ExpenseCard({
 
         <span className="text-gray-500">
           {expense.date}
+          <button
+  onClick={() => onDelete(expense.id)}
+  className="rounded bg-red-500 px-3 py-1 text-white"
+>
+  Delete
+</button>
         </span>
       </div>
     </div>

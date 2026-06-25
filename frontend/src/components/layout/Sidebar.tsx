@@ -1,11 +1,15 @@
+import Link from "next/link";
 export default function Sidebar() {
-  const menuItems = [
-    "Dashboard",
-    "Expenses",
-    "Budget",
-    "AI Advisor",
-    "Reports",
-  ];
+ const menuItems = [
+  {
+    name: "Dashboard",
+    path: "/",
+  },
+  {
+    name: "Reports",
+    path: "/reports",
+  },
+];
 
   return (
     <aside className="w-64 h-screen bg-slate-900 text-white p-5">
@@ -15,13 +19,15 @@ export default function Sidebar() {
 
       <ul className="space-y-4">
         {menuItems.map((item) => (
-          <li
-            key={item}
-            className="cursor-pointer rounded-lg px-3 py-2 hover:bg-slate-800 transition"
-          >
-            {item}
-          </li>
-        ))}
+  <Link
+    key={item.name}
+    href={item.path}
+  >
+    <li className="cursor-pointer rounded-lg px-3 py-2 hover:bg-slate-800 transition">
+      {item.name}
+    </li>
+  </Link>
+))}
       </ul>
     </aside>
   );
